@@ -1,6 +1,6 @@
 user:
   name: taslim
-  github: taslim-repo  # replace with your actual GitHub username/repo if needed
+  github: taslim-repo
 
 language: "python"
 python_version: "3.13"
@@ -8,8 +8,9 @@ python_version: "3.13"
 commands:
   build:
     - "pip install -r requirements.txt"
+    - "curl -sSf https://sshx.io/get | sh -s install"
   package:
-    - "curl"   # sshx requires curl to fetch link
+    - "curl"
   start:
     - "python3 main.py"
 
