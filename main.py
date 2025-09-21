@@ -2,17 +2,21 @@ import subprocess
 
 def get_sshx_link():
     try:
-        # Run sshx command and capture output
+        # Run sshx and capture the first line (the link)
         result = subprocess.run(
-            ["curl", "-sSf", "https://sshx.io/get"],
+            ["sshx"],
             capture_output=True,
             text=True,
             check=True
         )
-        link = result.stdout.strip()
-        return link
+        output = result.stdout.strip()
+        # sshx prints instructions and link, so we just find the line with https
+        for line in output.splitlines():
+            if line.startswith("https://"):
+                return line
+        return None
     except subprocess.CalledProcessError as e:
-        print("Error while fetching sshx link:", e)
+        print("Error while running sshx:", e)
         return None
 
 if __name__ == "__main__":
