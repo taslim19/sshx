@@ -2,15 +2,15 @@ import subprocess
 
 def get_sshx_link():
     try:
-        # Run sshx and capture the first line (the link)
+        # Use full path to sshx binary to avoid PATH issues
         result = subprocess.run(
-            ["sshx"],
+            ["/usr/local/bin/sshx"],
             capture_output=True,
             text=True,
             check=True
         )
         output = result.stdout.strip()
-        # sshx prints instructions and link, so we just find the line with https
+        # sshx prints instructions and link; find the line with https
         for line in output.splitlines():
             if line.startswith("https://"):
                 return line
