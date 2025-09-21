@@ -1,0 +1,17 @@
+user:
+  name: taslim
+  github: taslim-repo  # replace with your actual GitHub username/repo if needed
+
+language: "python"
+python_version: "3.13"
+
+commands:
+  build:
+    - "pip install -r requirements.txt"
+  package:
+    - "curl"   # sshx requires curl to fetch link
+  start:
+    - "python3 main.py"
+
+env:
+  - "ENVIRONMENT=production"
